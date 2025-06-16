@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        html, body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Inter', sans-serif;
+          box-sizing: border-box;
+          overflow-x: hidden; /* Prevent horizontal scrolling */
+          /* Subtle animation for background on load */
+          animation: backgroundFadeIn 1.5s ease-out forwards;
+        }
+
+        /* Keyframes for a subtle background fade-in animation */
+        @keyframes backgroundFadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        *, *::before, *::after {
+          box-sizing: inherit;
+        }
+
+        /* Enhanced Text Shadow for better readability and a "pop" effect */
+        p, h1, h2, th, span, input::placeholder {
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); /* Subtle dark shadow to make text stand out */
+        }
+
+        /* Custom Scrollbar Styles with more definition */
+        ::-webkit-scrollbar {
+          width: 10px;
+          height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.15);
+          border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: linear-gradient(to bottom, #9F7AEA, #6B46C1);
+          border-radius: 5px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(to bottom, #B794F4, #8B5CF6);
+        }
+
+        /* Custom selection styling for a cohesive design when text is highlighted */
+        ::selection {
+          background-color: #8B5CF6;
+          color: white;
+        }
+
+        /* Refined focus styles for input fields to provide clearer visual feedback */
+        input:focus {
+          box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5);
+          border-color: #6366F1;
+        }
+
+        /* General transition for common elements for smoother visual changes on hover/focus */
+        button, input, .rounded-lg, .rounded-full {
+            transition: all 0.3s ease-in-out;
+        }
