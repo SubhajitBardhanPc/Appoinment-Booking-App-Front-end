@@ -196,293 +196,308 @@ function App() {
 
   return (
     // Main container div with a gradient background and Inter font applied globally via CSS
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 font-inter">
-      {/* Header Section: Sticky at the top, semi-transparent background with blur */}
-      <header className="bg-white/10 backdrop-blur-md border-b border-white/20 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            {/* App Title and Logo */}
-            <div className="flex items-center space-x-3">
-              <div className="p-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg">
-                <Stethoscope className="h-8 w-8 text-white" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-white">MediManager</h1>
-                <p className="text-blue-200 text-sm">Welcome back, {username}</p>
-              </div>
-            </div>
-            {/* User Profile Info (hidden on small screens) */}
-            <div className="hidden md:flex items-center space-x-4">
-              <div className="text-right">
-                <p className="text-white font-medium">{username}</p>
-                <p className="text-blue-200 text-sm">Administrator</p>
-              </div>
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                <User className="h-5 w-5 text-white" />
-              </div>
-            </div>
-          </div>
+    <div className="app-container">
+  {/* Header Section: Sticky at the top, semi-transparent background with blur */}
+  <header className="header-section">
+    <div className="header-content-wrapper">
+      <div className="header-left-group">
+        {/* App Title and Logo */}
+        <div className="app-logo-container">
+          {/* Assuming Stethoscope is an icon component, it remains as is */}
+          <Stethoscope className="app-logo-icon" />
         </div>
-      </header>
+        <div>
+          <h1 className="app-title">MediManager</h1>
+          <p className="welcome-text">Welcome back, {username}</p>
+        </div>
+      </div>
+      {/* User Profile Info (hidden on small screens) */}
+      <div className="user-profile-group">
+        <div className="user-text-info">
+          <p className="user-name">{username}</p>
+          <p className="user-role">Administrator</p>
+        </div>
+        <div className="user-avatar-container">
+          {/* Assuming User is an icon component */}
+          <User className="user-avatar-icon" />
+        </div>
+      </div>
+    </div>
+  </header>
 
-      {/* Main Content Area: Centered, responsive grid layout */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Form Section: For adding and editing doctor details */}
-          <div className="lg:col-span-5">
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 shadow-2xl">
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="p-2 bg-gradient-to-r from-green-500 to-blue-600 rounded-lg">
-                  <UserPlus className="h-5 w-5 text-white" />
-                </div>
-                <h2 className="text-xl font-semibold text-white">
-                  {editIndex !== null ? "Edit Doctor" : "Add New Doctor"}
-                </h2>
-              </div>
-
-              <div className="space-y-4">
-                {/* Doctor Name Input Field */}
-                <div>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <input
-                      type="text"
-                      name="doctorName"
-                      placeholder="Doctor Name"
-                      value={formData.doctorName}
-                      onChange={handleChange}
-                      className={`w-full pl-10 pr-4 py-3 bg-white/10 border ${errors.doctorName ? 'border-red-400' : 'border-white/20'} rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
-                    />
-                  </div>
-                  {errors.doctorName && <p className="text-red-400 text-sm mt-1">{errors.doctorName}</p>}
-                </div>
-
-                {/* Contact Number Input Field */}
-                <div>
-                  <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <input
-                      type="tel"
-                      name="contactNo"
-                      placeholder="Contact Number"
-                      value={formData.contactNo}
-                      onChange={handleChange}
-                      className={`w-full pl-10 pr-4 py-3 bg-white/10 border ${errors.contactNo ? 'border-red-400' : 'border-white/20'} rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
-                    />
-                  </div>
-                  {errors.contactNo && <p className="text-red-400 text-sm mt-1">{errors.contactNo}</p>}
-                </div>
-
-                {/* Address Input Field */}
-                <div>
-                  <div className="relative">
-                    <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <input
-                      type="text"
-                      name="address"
-                      placeholder="Address"
-                      value={formData.address}
-                      onChange={handleChange}
-                      className={`w-full pl-10 pr-4 py-3 bg-white/10 border ${errors.address ? 'border-red-400' : 'border-white/20'} rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
-                    />
-                  </div>
-                  {errors.address && <p className="text-red-400 text-sm mt-1">{errors.address}</p>}
-                </div>
-
-                {/* Timing Input Field */}
-                <div>
-                  <div className="relative">
-                    <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <input
-                      type="text"
-                      name="timing"
-                      placeholder="Timing (e.g., 9:00 AM - 5:00 PM)"
-                      value={formData.timing}
-                      onChange={handleChange}
-                      className={`w-full pl-10 pr-4 py-3 bg-white/10 border ${errors.timing ? 'border-red-400' : 'border-white/20'} rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
-                    />
-                  </div>
-                  {errors.timing && <p className="text-red-400 text-sm mt-1">{errors.timing}</p>}
-                </div>
-
-                {/* Available Days Input Field */}
-                <div>
-                  <div className="relative">
-                    <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <input
-                      type="text"
-                      name="availableDays"
-                      placeholder="Available Days (e.g., Monday - Friday)"
-                      value={formData.availableDays}
-                      onChange={handleChange}
-                      className={`w-full pl-10 pr-4 py-3 bg-white/10 border ${errors.availableDays ? 'border-red-400' : 'border-white/20'} rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
-                    />
-                  </div>
-                  {errors.availableDays && <p className="text-red-400 text-sm mt-1">{errors.availableDays}</p>}
-                </div>
-
-                {/* Form Action Buttons: Add/Update and Cancel */}
-                <div className="flex space-x-3 pt-4">
-                  <button
-                    onClick={handleSubmit}
-                    className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-6 rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all transform hover:scale-105"
-                  >
-                    {editIndex !== null ? "Update Doctor" : "Add Doctor"}
-                  </button>
-                  {editIndex !== null && (
-                    <button
-                      onClick={handleCancel}
-                      className="px-6 py-3 bg-gray-600 text-white rounded-lg font-medium hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all"
-                    >
-                      Cancel
-                    </button>
-                  )}
-                </div>
-              </div>
+  {/* Main Content Area: Centered, responsive grid layout */}
+  <div className="main-content-area">
+    <div className="grid-layout">
+      {/* Form Section: For adding and editing doctor details */}
+      <div className="form-section">
+        <div className="form-card">
+          <div className="form-header">
+            <div className="form-icon-container">
+              {/* Assuming UserPlus is an icon component */}
+              <UserPlus className="form-header-icon" />
             </div>
+            <h2 className="form-title">
+              {editIndex !== null ? "Edit Doctor" : "Add New Doctor"}
+            </h2>
           </div>
 
-          {/* Table Section: Displays the list of added doctors */}
-          <div className="lg:col-span-7">
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 shadow-2xl">
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center space-x-3">
-                  <div className="p-2 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg">
-                    <Stethoscope className="h-5 w-5 text-white" />
-                  </div>
-                  <h2 className="text-xl font-semibold text-white">Doctors Directory</h2>
-                </div>
-                {/* Badge showing the total number of doctors */}
-                <div className="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm font-medium">
-                  {doctors.length} doctor{doctors.length !== 1 ? 's' : ''}
-                </div>
+          <div className="form-fields-group">
+            {/* Doctor Name Input Field */}
+            <div className="input-field-wrapper">
+              <div className="input-field-relative">
+                {/* Assuming User is an icon component */}
+                <User className="input-icon" />
+                <input
+                  type="text"
+                  name="doctorName"
+                  placeholder="Doctor Name"
+                  value={formData.doctorName}
+                  onChange={handleChange}
+                  className={`input-text-field ${errors.doctorName ? 'input-error-border' : ''}`}
+                />
               </div>
+              {errors.doctorName && <p className="input-error-message">{errors.doctorName}</p>}
+            </div>
 
-              {/* Conditional rendering for empty state or doctor table */}
-              {doctors.length === 0 ? (
-                <div className="text-center py-12">
-                  <Stethoscope className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-300 mb-2">No doctors added yet</h3>
-                  <p className="text-gray-400">Start by adding your first doctor to the directory.</p>
-                </div>
-              ) : (
-                <div className="overflow-x-auto rounded-lg">
-                  <table className="w-full text-white text-sm">
-                    <thead>
-                      <tr className="bg-white/10 border-b border-white/20">
-                        <th className="text-left py-3 px-4 text-gray-300 font-medium">Doctor</th>
-                        <th className="text-left py-3 px-4 text-gray-300 font-medium hidden md:table-cell">Contact</th>
-                        <th className="text-left py-3 px-4 text-gray-300 font-medium hidden lg:table-cell">Address</th>
-                        <th className="text-left py-3 px-4 text-gray-300 font-medium hidden sm:table-cell">Schedule</th>
-                        <th className="text-center py-3 px-4 text-gray-300 font-medium">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {doctors.map((doctor, index) => (
-                        <tr key={doctor.id || index} className="border-b border-white/10 hover:bg-white/5 transition-colors">
-                          <td className="py-4 px-4">
-                            <div className="flex items-center space-x-3">
-                              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
-                                <User className="h-5 w-5 text-white" />
-                              </div>
-                              <div>
-                                <p className="text-white font-medium">{doctor.doctorName}</p>
-                                <p className="text-gray-400 text-xs md:hidden">{doctor.contactNo}</p>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="py-4 px-4 text-gray-300 hidden md:table-cell">
-                            <div className="flex items-center space-x-2">
-                              <Phone className="h-4 w-4 text-gray-400 flex-shrink-0" />
-                              <span>{doctor.contactNo}</span>
-                            </div>
-                          </td>
-                          <td className="py-4 px-4 text-gray-300 hidden lg:table-cell">
-                            <div className="flex items-center space-x-2">
-                              <MapPin className="h-4 w-4 text-gray-400 flex-shrink-0" />
-                              <span className="truncate max-w-xs">{doctor.address}</span>
-                            </div>
-                          </td>
-                          <td className="py-4 px-4 text-gray-300 hidden sm:table-cell">
-                            <div className="space-y-1">
-                              <div className="flex items-center space-x-2">
-                                <Clock className="h-4 w-4 text-gray-400 flex-shrink-0" />
-                                <span className="text-xs">{doctor.timing}</span>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <Calendar className="h-4 w-4 text-gray-400 flex-shrink-0" />
-                                <span className="text-xs">{doctor.availableDays}</span>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="py-4 px-4">
-                            <div className="flex justify-center space-x-2">
-                              <button
-                                onClick={() => handleEdit(index)}
-                                className="p-2 bg-blue-500/20 text-blue-300 rounded-lg hover:bg-blue-500/30 transition-all transform hover:scale-105"
-                                title="Edit doctor"
-                              >
-                                <Edit2 className="h-4 w-4" />
-                              </button>
-                              <button
-                                onClick={() => handleDelete(index)}
-                                className="p-2 bg-red-500/20 text-red-300 rounded-lg hover:bg-red-500/30 transition-all transform hover:scale-105"
-                                title="Delete doctor"
-                              >
-                                <Trash2 className="h-4 w-4" />
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+            {/* Contact Number Input Field */}
+            <div className="input-field-wrapper">
+              <div className="input-field-relative">
+                {/* Assuming Phone is an icon component */}
+                <Phone className="input-icon" />
+                <input
+                  type="tel"
+                  name="contactNo"
+                  placeholder="Contact Number"
+                  value={formData.contactNo}
+                  onChange={handleChange}
+                  className={`input-text-field ${errors.contactNo ? 'input-error-border' : ''}`}
+                />
+              </div>
+              {errors.contactNo && <p className="input-error-message">{errors.contactNo}</p>}
+            </div>
+
+            {/* Address Input Field */}
+            <div className="input-field-wrapper">
+              <div className="input-field-relative">
+                {/* Assuming MapPin is an icon component */}
+                <MapPin className="input-icon" />
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  className={`input-text-field ${errors.address ? 'input-error-border' : ''}`}
+                />
+              </div>
+              {errors.address && <p className="input-error-message">{errors.address}</p>}
+            </div>
+
+            {/* Timing Input Field */}
+            <div className="input-field-wrapper">
+              <div className="input-field-relative">
+                {/* Assuming Clock is an icon component */}
+                <Clock className="input-icon" />
+                <input
+                  type="text"
+                  name="timing"
+                  placeholder="Timing (e.g., 9:00 AM - 5:00 PM)"
+                  value={formData.timing}
+                  onChange={handleChange}
+                  className={`input-text-field ${errors.timing ? 'input-error-border' : ''}`}
+                />
+              </div>
+              {errors.timing && <p className="input-error-message">{errors.timing}</p>}
+            </div>
+
+            {/* Available Days Input Field */}
+            <div className="input-field-wrapper">
+              <div className="input-field-relative">
+                {/* Assuming Calendar is an icon component */}
+                <Calendar className="input-icon" />
+                <input
+                  type="text"
+                  name="availableDays"
+                  placeholder="Available Days (e.g., Monday - Friday)"
+                  value={formData.availableDays}
+                  onChange={handleChange}
+                  className={`input-text-field ${errors.availableDays ? 'input-error-border' : ''}`}
+                />
+              </div>
+              {errors.availableDays && <p className="input-error-message">{errors.availableDays}</p>}
+            </div>
+
+            {/* Form Action Buttons: Add/Update and Cancel */}
+            <div className="form-action-buttons">
+              <button
+                onClick={handleSubmit}
+                className="submit-button"
+              >
+                {editIndex !== null ? "Update Doctor" : "Add Doctor"}
+              </button>
+              {editIndex !== null && (
+                <button
+                  onClick={handleCancel}
+                  className="cancel-button"
+                >
+                  Cancel
+                </button>
               )}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Delete Confirmation Modal: Appears as an overlay when showDeleteConfirm is true */}
-      {showDeleteConfirm && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-lg p-6 shadow-xl border border-slate-700 w-full max-w-sm relative">
-            <button
-              onClick={cancelDelete}
-              className="absolute top-3 right-3 text-gray-400 hover:text-white transition-colors"
-              title="Close"
-            >
-              <XCircle className="h-6 w-6" />
-            </button>
-            <div className="text-center">
-              <Trash2 className="h-12 w-12 text-red-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-white mb-2">Confirm Deletion</h3>
-              <p className="text-gray-300 mb-6">
-                Are you sure you want to delete doctor <span className="font-medium text-white">{doctorToDelete?.doctorName}</span>?
-                This action cannot be undone.
-              </p>
-              <div className="flex justify-center space-x-4">
-                <button
-                  onClick={confirmDelete}
-                  className="bg-red-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-slate-800 transition-all"
-                >
-                  Delete
-                </button>
-                <button
-                  onClick={cancelDelete}
-                  className="bg-gray-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-800 transition-all"
-                >
-                  Cancel
-                </button>
+      {/* Table Section: Displays the list of added doctors */}
+      <div className="table-section">
+        <div className="table-card">
+          <div className="table-header">
+            <div className="table-header-left-group">
+              <div className="table-icon-container">
+                {/* Assuming Stethoscope is an icon component */}
+                <Stethoscope className="table-header-icon" />
               </div>
+              <h2 className="table-title">Doctors Directory</h2>
+            </div>
+            {/* Badge showing the total number of doctors */}
+            <div className="doctor-count-badge">
+              {doctors.length} doctor{doctors.length !== 1 ? 's' : ''}
             </div>
           </div>
+
+          {/* Conditional rendering for empty state or doctor table */}
+          {doctors.length === 0 ? (
+            <div className="empty-state-message">
+              {/* Assuming Stethoscope is an icon component */}
+              <Stethoscope className="empty-state-icon" />
+              <h3 className="empty-state-title">No doctors added yet</h3>
+              <p className="empty-state-description">Start by adding your first doctor to the directory.</p>
+            </div>
+          ) : (
+            <div className="table-responsive-wrapper">
+              <table className="doctors-table">
+                <thead>
+                  <tr className="table-header-row">
+                    <th className="table-header-cell">Doctor</th>
+                    <th className="table-header-cell hidden-md">Contact</th>
+                    <th className="table-header-cell hidden-lg">Address</th>
+                    <th className="table-header-cell hidden-sm">Schedule</th>
+                    <th className="table-header-cell text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {doctors.map((doctor, index) => (
+                    <tr key={doctor.id || index} className="table-row">
+                      <td className="table-cell">
+                        <div className="doctor-info-group">
+                          <div className="doctor-avatar-small">
+                            {/* Assuming User is an icon component */}
+                            <User className="doctor-avatar-icon-small" />
+                          </div>
+                          <div>
+                            <p className="doctor-name-display">{doctor.doctorName}</p>
+                            <p className="doctor-contact-mobile">{doctor.contactNo}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="table-cell hidden-md">
+                        <div className="contact-info-display">
+                          {/* Assuming Phone is an icon component */}
+                          <Phone className="contact-icon" />
+                          <span>{doctor.contactNo}</span>
+                        </div>
+                      </td>
+                      <td className="table-cell hidden-lg">
+                        <div className="address-info-display">
+                          {/* Assuming MapPin is an icon component */}
+                          <MapPin className="address-icon" />
+                          <span className="address-text">{doctor.address}</span>
+                        </div>
+                      </td>
+                      <td className="table-cell hidden-sm">
+                        <div className="schedule-info-group">
+                          <div className="schedule-item">
+                            {/* Assuming Clock is an icon component */}
+                            <Clock className="schedule-icon" />
+                            <span className="schedule-text">{doctor.timing}</span>
+                          </div>
+                          <div className="schedule-item">
+                            {/* Assuming Calendar is an icon component */}
+                            <Calendar className="schedule-icon" />
+                            <span className="schedule-text">{doctor.availableDays}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="table-cell">
+                        <div className="table-actions">
+                          <button
+                            onClick={() => handleEdit(index)}
+                            className="action-button edit-button"
+                            title="Edit doctor"
+                          >
+                            {/* Assuming Edit2 is an icon component */}
+                            <Edit2 className="action-icon" />
+                          </button>
+                          <button
+                            onClick={() => handleDelete(index)}
+                            className="action-button delete-button"
+                            title="Delete doctor"
+                          >
+                            {/* Assuming Trash2 is an icon component */}
+                            <Trash2 className="action-icon" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
-      )}
-      {/* Inline styles for the App. This helps keep all React and styling in one file for simpler deployment */}
-      
+      </div>
     </div>
+  </div>
+
+  {/* Delete Confirmation Modal: Appears as an overlay when showDeleteConfirm is true */}
+  {showDeleteConfirm && (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <button
+          onClick={cancelDelete}
+          className="modal-close-button"
+          title="Close"
+        >
+          {/* Assuming XCircle is an icon component */}
+          <XCircle className="modal-close-icon" />
+        </button>
+        <div className="modal-text-center">
+          {/* Assuming Trash2 is an icon component */}
+          <Trash2 className="modal-delete-icon" />
+          <h3 className="modal-title">Confirm Deletion</h3>
+          <p className="modal-description">
+            Are you sure you want to delete doctor <span className="modal-highlight-name">{doctorToDelete?.doctorName}</span>?
+            This action cannot be undone.
+          </p>
+          <div className="modal-action-buttons">
+            <button
+              onClick={confirmDelete}
+              className="modal-confirm-button"
+            >
+              Delete
+            </button>
+            <button
+              onClick={cancelDelete}
+              className="modal-cancel-button"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+</div>
   );
 }
 
