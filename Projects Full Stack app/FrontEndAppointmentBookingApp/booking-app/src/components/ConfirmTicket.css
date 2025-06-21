@@ -1,0 +1,155 @@
+/* Wrapper: dark green-blue gradient with subtle white overlay */
+.ticket-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  padding: 20px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    ),
+    linear-gradient(135deg, #064e3b, #0f172a);
+  background-blend-mode: overlay;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card: white glass with blur, rounded corners & shadows */
+.ticket-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 35px 40px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.85),
+    0 0 40px rgba(220, 220, 220, 0.6);
+  color: #1a1a1a;
+  border: 2px solid #d3dce6;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.ticket-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow:
+    0 0 30px rgba(255, 255, 255, 1),
+    0 0 50px rgba(230, 230, 230, 0.8);
+}
+
+/* Title styling */
+.ticket-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 30px;
+  color: #064e3b;
+  letter-spacing: 0.07em;
+  text-shadow: 0 0 6px rgba(6, 78, 59, 0.7);
+}
+
+/* Details container */
+.ticket-detail {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid #d3dce6;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.ticket-detail:last-child {
+  border-bottom: none;
+}
+
+/* Labels */
+.label {
+  color: #064e3b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Values */
+.value {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* QR code container with subtle white glow and pulse */
+.qr-code-container {
+  margin-top: 35px;
+  padding: 18px;
+  border-radius: 12px;
+  border: 2px solid #e0e7ff;
+  box-shadow: 0 0 14px #f0f4ff;
+  display: inline-block;
+  animation: pulseGlow 2.5s infinite alternate;
+}
+
+/* Glow pulse animation */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 12px #dbeafe, 0 0 24px #bfdbfe;
+  }
+  100% {
+    box-shadow: 0 0 24px #93c5fd, 0 0 48px #60a5fa;
+  }
+}
+
+/* Instruction text below QR */
+.qr-instruction {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #0f172a;
+  font-style: italic;
+  user-select: none;
+  letter-spacing: 0.02em;
+}
+
+/* Download button styling */
+button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  background-color: #064e3b;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(6, 78, 59, 0.7);
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+button:hover {
+  background-color: #023827;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .ticket-card {
+    padding: 25px 20px;
+  }
+
+  .ticket-title {
+    font-size: 1.8rem;
+  }
+
+  .ticket-detail {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1rem;
+  }
+
+  .ticket-detail .value {
+    margin-top: 6px;
+  }
+}

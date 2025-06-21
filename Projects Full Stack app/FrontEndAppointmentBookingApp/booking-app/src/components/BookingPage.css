@@ -1,0 +1,153 @@
+.booking-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 14px;
+  background-color: #fff;
+}
+
+.booking-heading {
+  font-weight: 700;
+  margin-bottom: 30px;
+  font-size: 1.9rem;
+  color: #222;
+}
+
+.booking-heading span {
+  color: #007bff;
+}
+
+/* Doctor Info Card */
+.doctor-info-card {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 50px;
+  align-items: center;
+  background-color: #f0f8ff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 25px rgba(0, 123, 255, 0.15);
+}
+
+.doctor-image {
+  width: 170px;
+  height: 130px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.doctor-details {
+  flex: 1;
+  font-size: 17px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* Booking Form */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.booking-input {
+  padding: 16px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 2.5px solid #007bff;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.booking-input:disabled {
+  border-color: #ccc;
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.booking-input.otp-enabled {
+  border-color: #f39c12;
+  background-color: #fff8e1;
+}
+
+/* Buttons container */
+.button-group {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Generate OTP Button */
+.btn-generate {
+  flex-grow: 1;
+  min-width: 150px;
+  padding: 16px;
+  font-size: 18px;
+  border-radius: 10px;
+  background-color: #007bff;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.35);
+  transition: background-color 0.3s ease;
+}
+
+.btn-generate:hover {
+  background-color: #0056b3;
+}
+
+/* Verify OTP Button */
+.btn-verify {
+  flex-grow: 1;
+  min-width: 150px;
+  padding: 16px;
+  font-size: 18px;
+  border-radius: 10px;
+  background-color: #f39c12;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(243, 156, 18, 0.35);
+  transition: background-color 0.3s ease;
+}
+
+.btn-verify:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-verify:hover:not(:disabled) {
+  background-color: #d17a00;
+}
+
+/* Book Appointment Button */
+.btn-book {
+  padding: 20px;
+  font-size: 22px;
+  border-radius: 12px;
+  border: none;
+  background-color: #28a745;
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn-book:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-book:hover:not(:disabled) {
+  background-color: #1e7e34;
+}
